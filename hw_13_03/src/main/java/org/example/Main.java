@@ -35,9 +35,7 @@ public class Main {
                 FileInfo info = map.getOrDefault(ext, new FileInfo());
                 info.count++;
                 info.size += f.length();
-
                 map.put(ext, info);
-
                 return FileVisitResult.CONTINUE;
             }
 
@@ -46,22 +44,22 @@ public class Main {
                 return FileVisitResult.CONTINUE;
             }
         });
-
         List<Map.Entry<String, FileInfo>> list = new ArrayList<>(map.entrySet());
         list.sort((a, b) -> Long.compare(b.getValue().count, a.getValue().count));
+
         BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt"));
-        writer.write(String.format("%-5s %-12s %-12s %-12s\n", "№", "расширение", "количество", "объём"));
+
+        writer.write(String.format("%-4s %-15s %-12s %-12s%n", "№", "расширение", "количество", "объём"));
 
         int index = 1;
 
         for (Map.Entry<String, FileInfo> entry : list) {
 
             if (index > 50) break;
-            writer.write(String.format("%-5d %-12s %-12d %-12d\n", index, entry.getKey(), entry.getValue().count, entry.getValue().size));
+            writer.write(String.format("%-4d %-15s %-12d %-12d%n", index, entry.getKey(), entry.getValue().count, entry.getValue().size));
             index++;
         }
         writer.close();
-
         System.out.println("Готово. Результат в файле result.txt");
     }
 }
