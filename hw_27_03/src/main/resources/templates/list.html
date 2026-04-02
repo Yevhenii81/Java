@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Contacts</h2>
+<a href="/add">Add</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th><th>Name</th><th>Last</th><th>Phone</th><th>Actions</th>
+    </tr>
+
+    <tr th:each="c : ${contacts}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.firstName}"></td>
+        <td th:text="${c.lastName}"></td>
+        <td th:text="${c.phone}"></td>
+        <td>
+            <a th:href="@{'/edit/' + ${c.id}}">Edit</a>
+            <a th:href="@{'/delete/' + ${c.id}}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>

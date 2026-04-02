@@ -1,0 +1,7 @@
+<form action="/edit" method="post">
+    <input type="hidden" name="id" th:value="${contact.id}">
+    <input name="firstName" th:value="${contact.firstName}">
+    <input name="lastName" th:value="${contact.lastName}">
+    <input name="phone" th:value="${contact.phone}">
+    <button>Save</button>
+</form>
